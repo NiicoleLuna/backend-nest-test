@@ -1,19 +1,19 @@
 pipeline{
     agent any
     // escenarios -> escenario -> pasos
-    /*environment{
+    environment{
         NPM_CONFIG_CACHE= "${WORKSPACE}/.npm"
-        dockerImagePrefix = "us-west1-docker.pkg.dev/lab-agibiz/docker-repository"
-        registry = "https://us-west1-docker.pkg.dev"
-        registryCredentials = "gcp-registry"
-    }*/
+        //dockerImagePrefix = "us-west1-docker.pkg.dev/lab-agibiz/docker-repository"
+        //registry = "https://us-west1-docker.pkg.dev"
+        //registryCredentials = "gcp-registry"
+    }
 
     stages{
         stage("Saludo al profesor"){ 
             steps{
                 sh 'echo "Comenzando la tarea 4..."'
             }
-        }/*
+        }
         stage ("Instalación de dependencias, testing y build") {
             agent {
                 docker {
@@ -39,6 +39,7 @@ pipeline{
                 }
             }
         }
+        /*
         stage ("Build y push de imagen docker"){
             steps {
                 script {
