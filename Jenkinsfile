@@ -4,8 +4,8 @@ pipeline{
     environment{
         NPM_CONFIG_CACHE= "${WORKSPACE}/.npm"
         dockerImagePrefix = "us-west1-docker.pkg.dev/lab-agibiz/docker-repository"
-        //registry = "https://us-west1-docker.pkg.dev"
-        //registryCredentials = "gcp-registry"
+        registry = "https://us-west1-docker.pkg.dev"
+        registryCredentials = "gcp-registry"
     }
 
     stages{
@@ -41,14 +41,6 @@ pipeline{
         }
         stage ("Build y push de imagen docker"){
             steps {
-                    sh "docker build -t backend-nest-test-nlj ."
-                    sh "docker tag backend-nest-test-nlj ${dockerImagePrefix}/backend-nest-test-nlj"
-                    sh "docker push ${dockerImagePrefix}/backend-nest-test-nlj"
-            }
-        }
-        /*
-        stage ("Build y push de imagen docker"){
-            steps {
                 script {
                     docker.withRegistry("${registry}", registryCredentials ){
                         sh "docker build -t backend-nest-test-nlj ."
@@ -57,7 +49,7 @@ pipeline{
                     }
                 }
             }
-        }
+        }/*
         stage ("Actualización de Kubernetes"){
             agent{
                 docker{
