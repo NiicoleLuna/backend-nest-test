@@ -3,7 +3,7 @@ pipeline{
     // escenarios -> escenario -> pasos
     environment{
         NPM_CONFIG_CACHE= "${WORKSPACE}/.npm"
-        //dockerImagePrefix = "us-west1-docker.pkg.dev/lab-agibiz/docker-repository"
+        dockerImagePrefix = "us-west1-docker.pkg.dev/lab-agibiz/docker-repository"
         //registry = "https://us-west1-docker.pkg.dev"
         //registryCredentials = "gcp-registry"
     }
@@ -37,6 +37,13 @@ pipeline{
                         sh 'npm run build'
                     }
                 }
+            }
+        }
+        stage ("Build y push de imagen docker"){
+            steps {
+                    sh "docker build -t backend-nest-test-nlj ."
+                    sh "docker tag backend-nest-test-nlj ${dockerImagePrefix}/backend-nest-test-nlj"
+                    sh "docker push ${dockerImagePrefix}/backend-nest-test-nlj"
             }
         }
         /*
