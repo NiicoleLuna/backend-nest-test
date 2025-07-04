@@ -51,7 +51,7 @@ pipeline{
                     }
                 }
             }
-        }/*
+        }
         stage ("Actualización de Kubernetes"){
             agent{
                 docker{
@@ -61,9 +61,9 @@ pipeline{
             }
             steps{
                 withKubeConfig([credentialsId: 'gcp-kubeconfig']){
-                    sh "kubectl -n lab-nlj set image deployments/backend-nest-nlj backend-nest-nlj=${dockerImagePrefix}/backend-nest-nlj"
+                    sh "kubectl -n lab-nlj set image deployments/backend-nest-test-nlj backend-nest-test-nlj=${dockerImagePrefix}/backend-nest-test-nlj:${BUILD_NUMBER}"
                 }
             }
-        }*/
+        }
     }
 }
