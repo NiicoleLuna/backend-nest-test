@@ -45,7 +45,9 @@ pipeline{
                     docker.withRegistry("${registry}", registryCredentials ){
                         sh "docker build -t backend-nest-test-nlj ."
                         sh "docker tag backend-nest-test-nlj ${dockerImagePrefix}/backend-nest-test-nlj"
+                        sh "docker tag backend-nest-test-nlj ${dockerImagePrefix}/backend-nest-test-nlj:${BUILD_NUMBER}"
                         sh "docker push ${dockerImagePrefix}/backend-nest-test-nlj"
+                        sh "docker push ${dockerImagePrefix}/backend-nest-test-nlj:${BUILD_NUMBER}"
                     }
                 }
             }
